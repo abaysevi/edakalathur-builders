@@ -1,0 +1,127 @@
+.footer {
+  background: var(--brown-900);
+  color: var(--brown-200);
+  padding: 80px 0 0;
+  margin-top: auto;
+}
+
+.footer__top {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 48px;
+  padding-bottom: 60px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.footer__brand {
+  max-width: 320px;
+}
+
+.footer__logo {
+  margin-bottom: 20px;
+}
+
+.footer__logo-img {
+  height: auto;
+  width: 100%;
+  max-width: 260px;
+  filter: brightness(0) invert(1);
+}
+
+.footer__description {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--brown-300);
+}
+
+.footer__nav-title {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--white);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 20px;
+}
+
+.footer__nav-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: var(--brown-300);
+  margin-bottom: 12px;
+  transition: color var(--transition);
+  cursor: default;
+}
+
+a.footer__nav-link {
+  cursor: pointer;
+}
+
+a.footer__nav-link:hover {
+  color: var(--white);
+}
+
+.footer__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 0;
+  font-size: 0.85rem;
+  color: var(--brown-400);
+}
+
+.footer__tagline {
+  font-style: italic;
+  color: var(--green-400);
+}
+
+@media (max-width: 1024px) {
+  .footer__top {
+    grid-template-columns: 1fr 1fr;
+    gap: 36px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 48px 0 0;
+  }
+
+  .footer__top {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding-bottom: 32px;
+  }
+
+  .footer__brand {
+    max-width: 100%;
+  }
+
+  .footer__logo-img {
+    max-width: 200px;
+  }
+
+  .footer__description {
+    font-size: 0.85rem;
+  }
+
+  .footer__nav-title {
+    font-size: 0.8rem;
+    margin-bottom: 12px;
+  }
+
+  .footer__nav-link {
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+  }
+
+  .footer__bottom {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+    font-size: 0.78rem;
+    padding: 20px 0 80px;
+  }
+}
