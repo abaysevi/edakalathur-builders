@@ -930,3 +930,118 @@
     text-align: center;
   }
 }
+
+/* =====================================================
+   Projects Gallery Marquee
+   ===================================================== */
+.projects-marquee-section {
+  padding: 100px 0 0;
+  background: var(--cream);
+  overflow: hidden;
+}
+
+.projects-marquee__title {
+  margin-bottom: 12px;
+}
+
+/* Track wrapper — clips the scrolling track & adds edge fades */
+.projects-marquee__track-wrapper {
+  position: relative;
+  margin-top: 48px;
+  overflow: hidden;
+
+  /* Fade left & right edges to nothing */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+}
+
+/* The moving strip — doubled items so loop is seamless */
+.projects-marquee__track {
+  display: flex;
+  gap: 24px;
+  width: max-content;
+  animation: marquee-scroll 40s linear infinite;
+  padding-bottom: 48px;
+}
+
+.projects-marquee__track-wrapper:hover .projects-marquee__track {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* Individual project card */
+.projects-marquee__card {
+  position: relative;
+  width: 320px;
+  height: 220px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  flex-shrink: 0;
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
+}
+
+.projects-marquee__card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.projects-marquee__card:hover img {
+  transform: scale(1.07);
+}
+
+/* Label overlay */
+.projects-marquee__card-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 28px 16px 14px;
+  background: linear-gradient(to top, rgba(61, 43, 31, 0.82) 0%, transparent 100%);
+  color: var(--white);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.projects-marquee__card:hover .projects-marquee__card-label {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .projects-marquee-section {
+    padding: 60px 0 0;
+  }
+
+  .projects-marquee__card {
+    width: 240px;
+    height: 170px;
+  }
+
+  .projects-marquee__track {
+    gap: 16px;
+    animation-duration: 28s;
+  }
+}

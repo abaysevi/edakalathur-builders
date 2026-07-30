@@ -3,6 +3,46 @@ import { Link } from 'react-router-dom'
 import dhibinImg from '../assets/dhibin.jpeg'
 import './Home.css'
 
+// Project photos
+import proj1  from '../assets/projects/project1.jpeg'
+import proj2  from '../assets/projects/project2.jpeg'
+import proj3  from '../assets/projects/project3.jpeg'
+import proj4  from '../assets/projects/project4.jpeg'
+import proj5  from '../assets/projects/project5.jpeg'
+import proj6  from '../assets/projects/project6.jpeg'
+import proj7  from '../assets/projects/project7.jpeg'
+import proj8  from '../assets/projects/project8.jpeg'
+import proj9  from '../assets/projects/project9.jpeg'
+import proj10 from '../assets/projects/project10.jpeg'
+import proj11 from '../assets/projects/project11.jpeg'
+import proj12 from '../assets/projects/project12.jpeg'
+import proj13 from '../assets/projects/project13.jpeg'
+import proj14 from '../assets/projects/project14.jpeg'
+import proj15 from '../assets/projects/project15.jpeg'
+import proj16 from '../assets/projects/project16.jpeg'
+
+// -------------------------------------------------------------------
+// Update the 'label' for each photo to describe the project
+// -------------------------------------------------------------------
+const projectPhotos: { src: string; label: string }[] = [
+  { src: proj1,  label: 'Completed Project' },
+  { src: proj2,  label: 'Completed Project' },
+  { src: proj3,  label: 'Completed Project' },
+  { src: proj4,  label: 'Completed Project' },
+  { src: proj5,  label: 'Completed Project' },
+  { src: proj6,  label: 'Completed Project' },
+  { src: proj7,  label: 'Completed Project' },
+  { src: proj8,  label: 'Completed Project' },
+  { src: proj9,  label: 'Completed Project' },
+  { src: proj10, label: 'Completed Project' },
+  { src: proj11, label: 'Completed Project' },
+  { src: proj12, label: 'Completed Project' },
+  { src: proj13, label: 'Completed Project' },
+  { src: proj14, label: 'Completed Project' },
+  { src: proj15, label: 'Completed Project' },
+  { src: proj16, label: 'Completed Project' },
+]
+
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
   visible: { opacity: 1, y: 0 }
@@ -369,6 +409,36 @@ function Home() {
                 </div>
               </div>
             </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Projects Gallery Marquee */}
+      <section className="projects-marquee-section">
+        <motion.div
+          className="container"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-100px' }}
+          variants={fadeInUp}
+          transition={{ duration: 0.6 }}
+        >
+          <span className="section-label">Our Work</span>
+          <h2 className="section-title projects-marquee__title">Projects We've Completed</h2>
+          <p className="section-subtitle">
+            A glimpse of homes, buildings, and spaces we've proudly built across Kerala.
+          </p>
+        </motion.div>
+
+        <div className="projects-marquee__track-wrapper">
+          {/* Pause on hover */}
+          <div className="projects-marquee__track">
+            {[...projectPhotos, ...projectPhotos].map((p, i) => (
+              <div className="projects-marquee__card" key={i}>
+                <img src={p.src} alt={p.label} loading="lazy" />
+                <div className="projects-marquee__card-label">{p.label}</div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
