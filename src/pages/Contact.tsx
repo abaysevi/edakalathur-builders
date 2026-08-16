@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { useState, useRef, useEffect } from 'react'
+import emailjs from '@emailjs/browser'
 import './Contact.css'
 
 const fadeInUp = {
@@ -15,9 +16,10 @@ const staggerContainer = {
   }
 }
 
-// ✅ Replace YOUR_FORM_ID below with your Formspree form ID
-// Steps: go to https://formspree.io → New Form → copy the ID from the endpoint URL
-const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID'
+// EmailJS configuration — replace these with your IDs from https://emailjs.com
+const EMAILJS_SERVICE_ID = 'service_ybhmydc'
+const EMAILJS_TEMPLATE_ID = 'template_5p4y3wa'
+const EMAILJS_PUBLIC_KEY = 'nVDhH5gP-6AFY0PK6'
 
 interface SelectOption { value: string; label: string }
 interface CustomSelectProps {
@@ -101,24 +103,16 @@ function ContactForm() {
     e.preventDefault()
     setStatus('loading')
     try {
-      const res = await fetch(FORMSPREE_ENDPOINT, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({
-          name: form.name,
-          email: form.email || 'Not provided',
-          phone: form.phone,
-          projectType: form.projectType,
-          budget: form.budget || 'Not specified',
-          location: form.location,
-          message: form.message || 'No message provided',
-        })
-      })
-      if (res.ok) {
-        setStatus('success')
-      } else {
-        setStatus('error')
-      }
+      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+        name: form.name,
+        email: form.email || 'Not provided',
+        phone: form.phone,
+        projectType: form.projectType,
+        budget: form.budget || 'Not specified',
+        location: form.location,
+        message: form.message || 'No message provided',
+      }, EMAILJS_PUBLIC_KEY)
+      setStatus('success')
     } catch {
       setStatus('error')
     }
@@ -144,6 +138,8 @@ function ContactForm() {
     <form className="contact-form__card" onSubmit={handleSubmit} noValidate>
       <h2 className="contact-form__title">Send Us an Enquiry</h2>
       <p className="contact-form__subtitle">Fill in your details and we'll get back to you within 24 hours.</p>
+
+      <input type="text" name="_gotcha" style={{ display: 'none' }} tabIndex={-1} autoComplete="off" />
 
       <div className="contact-form__row">
         <div className="contact-form__group">
@@ -390,7 +386,7 @@ function Contact() {
                   <h3 className="contact-info-card__title">Working Hours</h3>
                   <p className="contact-info-card__text">
                     Monday - Saturday<br />
-                    8:00 AM - 6:00 PM
+                    10:00 AM - 5:00 PM
                   </p>
                   <p className="contact-info-card__sub">Sunday - Closed</p>
                 </div>
